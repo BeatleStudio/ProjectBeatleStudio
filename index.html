@@ -4,160 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beatle Studio | Coming Soon</title>
-    <!-- Importing a clean, modern font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Reset */
+        /* CSS Reset & Base Variables */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #080808;
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --text-placeholder: #8c8c8c;
+            --border-subtle: #242424;
+            --border-input: #666666;
+            --accent-focus: #0099ff;
+            --btn-primary-bg: #ffffff;
+            --btn-primary-text: #000000;
+        }
+
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
+            font-family: "Inter", sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle background glow effect */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(255, 75, 75, 0.1) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
+        /* Layout & Spacing */
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 24px;
         }
 
-        .container {
-            max-width: 700px;
-            padding: 2rem;
-            z-index: 1;
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0 48px 0;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 2rem;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
-        h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            text-align: center;
+            padding: 48px 0;
         }
 
-        /* Accent color for "Studio" */
-        h1 span {
-            color: #ff4b4b;
-            position: relative;
-            display: inline-block;
+        /* Typography */
+        h1.display {
+            font-size: 62px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            max-width: 800px;
         }
 
-        p {
-            font-size: 1.25rem;
-            color: #a0a0a0;
-            margin-bottom: 3rem;
-            line-height: 1.6;
+        p.body-text {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 500px;
         }
 
+        /* Cards & Containers */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px 0px, rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* Forms & Inputs */
         .notify-form {
             display: flex;
-            gap: 10px;
-            justify-content: center;
-            max-width: 500px;
-            margin: 0 auto;
+            flex-direction: column;
+            gap: 16px;
+            text-align: left;
         }
 
-        input[type="email"] {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: 1px solid #333;
+        .form-label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .text-input {
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-input);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-size: 1rem;
-            font-family: inherit;
+            padding: 12px 16px;
+            font-size: 15px;
+            width: 100%;
+            font-family: "Inter", sans-serif;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .text-input::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        .text-input:focus {
             outline: none;
-            transition: border-color 0.3s ease;
+            border-color: var(--accent-focus);
+            box-shadow: rgb(9, 9, 9) 0px 0px 0px 2px;
         }
 
-        input[type="email"]:focus {
-            border-color: #ff4b4b;
-        }
-
-        button {
-            padding: 1rem 2rem;
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            font-family: "Inter", sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 12px 24px;
+            border-radius: 50px;
             border: none;
-            border-radius: 8px;
-            background: #ffffff;
-            color: #0a0a0a;
-            font-size: 1rem;
-            font-weight: 700;
-            font-family: inherit;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
         }
 
-        button:hover {
-            background: #ff4b4b;
-            color: #ffffff;
-            transform: translateY(-2px);
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        
+        .badge-new {
+            display: inline-block;
+            background-color: #242424;
+            color: #cccccc;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
         }
 
+        /* Footer */
         .footer {
-            position: absolute;
-            bottom: 2rem;
-            font-size: 0.9rem;
-            color: #555;
-            letter-spacing: 1px;
+            text-align: center;
+            padding: 48px 0 24px 0;
+            font-size: 12px;
+            color: var(--text-secondary);
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            .notify-form {
-                flex-direction: column;
+        /* Responsive Breakpoints */
+        @media (max-width: 809px) {
+            h1.display {
+                font-size: 42px; /* Scaled down for mobile */
+                margin-bottom: 16px;
             }
-            button {
-                width: 100%;
+            
+            p.body-text {
+                font-size: 16px;
+                margin-bottom: 32px;
+            }
+
+            .main-content {
+                padding: 24px 0;
+            }
+            
+            .nav-bar {
+                padding: 12px 0 24px 0;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo">Beatle</div>
-        
-        <h1>Creating the<br>Next <span>Wave.</span></h1>
-        
-        <p>We are currently crafting a new digital experience. Enter your email below to get notified when Beatle Studio goes live.</p>
-        
-        <form class="notify-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Notify Me</button>
-        </form>
-    </div>
+    <div class="page-wrapper">
+        <header class="nav-bar">
+            <div class="logo">Beatle Studio</div>
+        </header>
 
-    <div class="footer">
-        © 2026 BEATLE STUDIO. ALL RIGHTS RESERVED.
+        <main class="main-content">
+            <span class="badge-new">Coming Soon</span>
+            
+            <h1 class="display">Design without boundaries.</h1>
+            
+            <p class="body-text">We are building a new standard for digital creative agencies. Join the waitlist to get early access when we launch.</p>
+            
+            <div class="card">
+                <form class="notify-form" action="YOUR_FORMSPREE_URL" method="POST">
+                    <div>
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="text-input" placeholder="hello@example.com" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Join Waitlist</button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            © 2026 Beatle Studio. All rights reserved.
+        </footer>
     </div>
 
 </body>

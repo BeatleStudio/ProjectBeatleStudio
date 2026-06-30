@@ -2,78 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Beatle Studio | Site Under Construction</title>
+    <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Reset & Base Variables */
+        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-dark: #000000;
-            --text-primary: #ffffff;
-            --text-secondary: #999999;
-            --border-subtle: #242424;
-        }
-
         body {
             font-family: "Inter", sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
+            background-color: #000000;
+            color: #ffffff;
+            /* Use dvh for perfect mobile screen fitting, fallback to vh for older browsers */
+            min-height: 100vh;
+            min-height: 100dvh; 
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Layout & Spacing */
-        .page-wrapper {
+        /* Fluid Layout Container */
+        .container {
             display: flex;
             flex-direction: column;
             flex: 1;
-            max-width: 1280px;
-            margin: 0 auto;
             width: 100%;
-            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Fluid padding: scales based on screen width */
+            padding: clamp(16px, 4vw, 32px); 
         }
 
-        .nav-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 32px 0 64px 0;
+        /* Header / Logo */
+        header {
+            text-align: center;
+            padding: clamp(16px, 4vh, 48px) 0;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: clamp(16px, 2vw, 20px);
             font-weight: 600;
-            color: var(--text-primary);
             letter-spacing: -0.01em;
             text-transform: uppercase;
         }
 
-        .main-content {
+        /* Centered Main Content */
+        main {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex: 1;
             text-align: center;
-            padding: 0 16px 48px 16px;
+            width: 100%;
         }
 
-        /* Typography */
+        /* Badge */
         .badge-progress {
             display: inline-block;
-            background-color: var(--border-subtle);
+            background-color: #242424;
             color: #cccccc;
             font-size: 11px;
             font-weight: 600;
@@ -81,55 +77,46 @@
             border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 24px;
+            margin-bottom: clamp(16px, 3vh, 24px);
         }
 
+        /* Fluid Headline: Automatically scales between 36px (mobile) and 64px (PC) */
         h1.display {
-            font-size: 62px;
+            font-size: clamp(36px, 6vw, 64px);
             font-weight: 500;
             line-height: 1.1;
             letter-spacing: -0.02em;
-            margin-bottom: 24px;
-            max-width: 800px;
+            margin-bottom: clamp(16px, 3vh, 24px);
+            max-width: 16ch; /* Prevents lines from getting too wide on ultra-wide screens */
         }
 
+        /* Fluid Paragraph: Scales between 16px and 18px */
         p.body-text {
-            font-size: 18px;
+            font-size: clamp(16px, 2vw, 18px);
             font-weight: 400;
             line-height: 1.5;
-            color: var(--text-secondary);
-            max-width: 520px;
+            color: #999999;
+            max-width: 500px;
+            padding: 0 16px;
         }
 
         /* Footer */
-        .footer {
+        footer {
             text-align: center;
-            padding: 48px 0 24px 0;
+            padding: clamp(24px, 5vh, 48px) 0;
             font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 809px) {
-            h1.display {
-                font-size: 42px;
-                margin-bottom: 16px;
-            }
-            
-            p.body-text {
-                font-size: 16px;
-            }
+            color: #666666;
         }
     </style>
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <header class="nav-bar">
+    <div class="container">
+        <header>
             <div class="logo">Beatle Studio</div>
         </header>
 
-        <main class="main-content">
+        <main>
             <span class="badge-progress">Work In Progress</span>
             
             <h1 class="display">Site Under Construction.</h1>
@@ -137,7 +124,7 @@
             <p class="body-text">We are currently laying the groundwork for a new digital experience. Please check back soon.</p>
         </main>
 
-        <footer class="footer">
+        <footer>
             © 2026 Beatle Studio. All rights reserved.
         </footer>
     </div>

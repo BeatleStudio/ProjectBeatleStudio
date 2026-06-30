@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatle Studio | Coming Soon</title>
+    <title>Beatle Studio | Site Under Construction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,15 +18,9 @@
 
         :root {
             --bg-dark: #000000;
-            --bg-card: #080808;
             --text-primary: #ffffff;
             --text-secondary: #999999;
-            --text-placeholder: #8c8c8c;
             --border-subtle: #242424;
-            --border-input: #666666;
-            --accent-focus: #0099ff;
-            --btn-primary-bg: #ffffff;
-            --btn-primary-text: #000000;
         }
 
         body {
@@ -54,15 +48,16 @@
         .nav-bar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 24px 0 48px 0;
+            justify-content: center;
+            padding: 32px 0 64px 0;
         }
 
         .logo {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-primary);
             letter-spacing: -0.01em;
+            text-transform: uppercase;
         }
 
         .main-content {
@@ -72,14 +67,27 @@
             justify-content: center;
             flex: 1;
             text-align: center;
-            padding: 48px 0;
+            padding: 0 16px 48px 16px;
         }
 
         /* Typography */
+        .badge-progress {
+            display: inline-block;
+            background-color: var(--border-subtle);
+            color: #cccccc;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+
         h1.display {
             font-size: 62px;
             font-weight: 500;
-            line-height: 1.2;
+            line-height: 1.1;
             letter-spacing: -0.02em;
             margin-bottom: 24px;
             max-width: 800px;
@@ -90,89 +98,7 @@
             font-weight: 400;
             line-height: 1.5;
             color: var(--text-secondary);
-            margin-bottom: 48px;
-            max-width: 500px;
-        }
-
-        /* Cards & Containers */
-        .card {
-            background-color: var(--bg-card);
-            border-radius: 12px;
-            padding: 24px;
-            border: 1px solid var(--border-subtle);
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px 0px, rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
-            width: 100%;
-            max-width: 480px;
-        }
-
-        /* Forms & Inputs */
-        .notify-form {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            text-align: left;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .text-input {
-            background-color: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid var(--border-input);
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-size: 15px;
-            width: 100%;
-            font-family: "Inter", sans-serif;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .text-input::placeholder {
-            color: var(--text-placeholder);
-        }
-
-        .text-input:focus {
-            outline: none;
-            border-color: var(--accent-focus);
-            box-shadow: rgb(9, 9, 9) 0px 0px 0px 2px;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background-color: var(--btn-primary-bg);
-            color: var(--btn-primary-text);
-            font-family: "Inter", sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            width: 100%;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-        }
-        
-        .badge-new {
-            display: inline-block;
-            background-color: #242424;
-            color: #cccccc;
-            font-size: 10px;
-            font-weight: 500;
-            padding: 4px 8px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
+            max-width: 520px;
         }
 
         /* Footer */
@@ -186,21 +112,12 @@
         /* Responsive Breakpoints */
         @media (max-width: 809px) {
             h1.display {
-                font-size: 42px; /* Scaled down for mobile */
+                font-size: 42px;
                 margin-bottom: 16px;
             }
             
             p.body-text {
                 font-size: 16px;
-                margin-bottom: 32px;
-            }
-
-            .main-content {
-                padding: 24px 0;
-            }
-            
-            .nav-bar {
-                padding: 12px 0 24px 0;
             }
         }
     </style>
@@ -213,21 +130,11 @@
         </header>
 
         <main class="main-content">
-            <span class="badge-new">Coming Soon</span>
+            <span class="badge-progress">Work In Progress</span>
             
-            <h1 class="display">Design without boundaries.</h1>
+            <h1 class="display">Site Under Construction.</h1>
             
-            <p class="body-text">We are building a new standard for digital creative agencies. Join the waitlist to get early access when we launch.</p>
-            
-            <div class="card">
-                <form class="notify-form" action="YOUR_FORMSPREE_URL" method="POST">
-                    <div>
-                        <label class="form-label" for="email">Email Address</label>
-                        <input type="email" id="email" name="email" class="text-input" placeholder="hello@example.com" required>
-                    </div>
-                    <button type="submit" class="btn-primary">Join Waitlist</button>
-                </form>
-            </div>
+            <p class="body-text">We are currently laying the groundwork for a new digital experience. Please check back soon.</p>
         </main>
 
         <footer class="footer">

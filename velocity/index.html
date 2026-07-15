@@ -9,12 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;400;500&display=swap" rel="stylesheet">
     
-    <script>
-        if(localStorage.getItem("theme") === "light") {
-            document.documentElement.setAttribute("data-theme", "light");
-        }
-    </script>
-
     <style>
         :root {
             --transition-speed: 0.3s;
@@ -44,11 +38,13 @@
             margin: 0; 
             padding: 0; 
             -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-user-drag: none;
+            
+            /* --- ANTI-COPY CSS --- */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+            -webkit-user-drag: none; /* Stops image/text dragging */
         }
 
         body {
@@ -68,31 +64,7 @@
 
         button:focus, a:focus { outline: none; }
 
-        /* --- App Promo Popup --- */
-        .promo-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); display: none;
-            align-items: center; justify-content: center; z-index: 20000;
-        }
-        .promo-box {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            padding: 2.5rem; width: 90%; max-width: 400px; text-align: center;
-            position: relative; border-radius: 4px;
-        }
-        .close-promo {
-            position: absolute; top: 10px; right: 15px; cursor: pointer;
-            font-size: 1.8rem; color: var(--text-muted);
-        }
-        .promo-box h2 { margin-bottom: 1rem; font-size: 1.3rem; letter-spacing: 2px; }
-        .promo-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6; }
-        .download-btn {
-            display: inline-block; padding: 1rem 2.5rem; border: 1px solid var(--text-main);
-            color: var(--text-main); text-decoration: none; font-size: 0.85rem;
-            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
-        }
-        .download-btn:hover { background: var(--text-main); color: var(--bg-color); }
-
-        /* --- Existing Styles --- */
+        /* --- Privacy Policy Banner (The Popup) --- */
         .privacy-banner {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
@@ -147,6 +119,7 @@
         }
         .btn-decline:hover { color: var(--text-main); border-color: var(--text-main); }
 
+        /* --- Top Controls Panel --- */
         .top-controls {
             position: absolute;
             top: 0; left: 0; width: 100%;
@@ -160,6 +133,7 @@
         .top-controls .center { justify-self: center; text-align: center; }
         .top-controls .right { justify-self: end; }
 
+        /* --- SVG Icon Toggle Switch --- */
         .theme-switch-container {
             display: flex;
             align-items: center;
@@ -203,7 +177,7 @@
 
         .back-btn {
             color: var(--text-main); text-decoration: none; display: flex; align-items: center; justify-content: center;
-            padding: 0.5rem; border-radius: 50%; transition: background var(--transition-speed); cursor: pointer;
+            padding: 0.5rem; border-radius: 50%; transition: background var(--transition-speed); 
         }
         .back-btn svg { width: 20px; height: 20px; transition: transform 0.3s ease; }
         .back-btn:hover { background: rgba(128, 128, 128, 0.1); }
@@ -213,6 +187,7 @@
         .app-subtitle { font-size: clamp(0.55rem, 1vh, 0.65rem); color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
         .app-subtitle span { color: var(--text-main); font-weight: 600; }
 
+        /* --- Main Container --- */
         .container {
             width: 100%; max-width: 700px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -229,6 +204,7 @@
         .network-badge.active { opacity: 1; }
         .network-badge span { color: var(--text-main); font-weight: 600;}
 
+        /* --- Speedometer UI --- */
         .speedometer-container {
             position: relative; width: 100%; max-width: 350px; 
             height: 20vh; min-height: 120px; max-height: 180px;
@@ -241,6 +217,9 @@
         .main-number { font-family: 'JetBrains Mono', monospace; font-size: clamp(3rem, 8vh, 4.5rem); font-weight: 100; line-height: 1; letter-spacing: -2px; }
         .main-unit { font-size: clamp(0.8rem, 2vh, 1rem); color: var(--text-muted); margin-left: 0.5rem; }
 
+        .rating-text { font-size: clamp(0.7rem, 1.5vh, 0.85rem); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); display: none; height: 1.2rem; }
+
+        /* --- Metrics Grid --- */
         .metrics-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); width: 100%;
             border: 1px solid var(--border-color); border-radius: 4px; padding: 1.5vh 0; background: var(--card-bg); row-gap: 1.5vh;
@@ -260,6 +239,7 @@
         .btn:hover:not(:disabled) { background-color: var(--text-main); color: var(--bg-color); }
         .btn:disabled { border-color: var(--border-color); color: var(--text-muted); cursor: not-allowed; }
 
+        /* --- Modal Popup with Capabilities --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); display: flex;
@@ -285,6 +265,7 @@
         .modal-val { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; }
         .modal-val span { font-size: 0.7rem; color: var(--text-muted); margin-left: 5px; font-family: 'Inter';}
 
+        /* Capabilities List */
         .capabilities-section {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -331,11 +312,15 @@
             transition: opacity 0.3s ease;
             z-index: 10;
         }
-        .good-for-nothing-msg.active { opacity: 1; }
+        .good-for-nothing-msg.active {
+            opacity: 1;
+        }
+
         .cap-item { display: flex; align-items: center; gap: 0.5rem; }
         .cap-icon.yes { color: var(--accent); }
         .cap-icon.no { color: var(--error-color); }
 
+        /* --- Permanent Small Footer --- */
         .app-footer {
             position: absolute;
             bottom: 1rem;
@@ -352,8 +337,11 @@
             transition: color var(--transition-speed);
             cursor: pointer;
         }
-        .app-footer a:hover { color: var(--text-main); }
+        .app-footer a:hover {
+            color: var(--text-main);
+        }
 
+        /* Responsive spacing fixes */
         @media (max-width: 768px) {
             .top-controls { padding: 1.5rem 1rem; }
             .app-footer { font-size: 0.55rem; padding: 0 1rem; line-height: 1.4;}
@@ -365,15 +353,6 @@
     </style>
 </head>
 <body>
-
-    <div class="promo-overlay" id="promo-popup">
-        <div class="promo-box">
-            <span class="close-promo" onclick="closePromo()">&times;</span>
-            <h2>Velocity Mobile</h2>
-            <p>Check your Wi-Fi, upload, and download speeds on the go. Download our official Android app.</p>
-            <a href="https://github.com/BeatleStudio/ProjectBeatleStudio/releases/download/1.0.0/app-debug.apk" class="download-btn">Install APK</a>
-        </div>
-    </div>
 
     <div class="privacy-banner" id="privacy-banner">
         <div class="privacy-text">
@@ -388,7 +367,7 @@
 
     <div class="top-controls">
         <div class="left">
-            <a onclick="smartBackNavigation()" class="back-btn" aria-label="Go Back">
+            <a href="../index.html" class="back-btn" aria-label="Go Back">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
@@ -526,24 +505,14 @@
     </div>
 
     <script>
-        document.addEventListener('contextmenu', event => event.preventDefault()); 
-        document.addEventListener('copy', event => event.preventDefault());        
-        document.addEventListener('cut', event => event.preventDefault());         
+        // --- ANTI-COPY JAVASCRIPT ---
+        document.addEventListener('contextmenu', event => event.preventDefault()); // Disables right-click menu
+        document.addEventListener('copy', event => event.preventDefault());        // Disables copy 
+        document.addEventListener('cut', event => event.preventDefault());         // Disables cut
         
         const CF_ENDPOINT = 'https://speed.cloudflare.com';
         let isRunning = false;
         const TEST_DURATION_MS = 8000; 
-
-        // Trigger popup on every load (1 second delay)
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                document.getElementById("promo-popup").style.display = "flex";
-            }, 1000);
-        });
-
-        function closePromo() {
-            document.getElementById("promo-popup").style.display = "none";
-        }
 
         document.addEventListener("DOMContentLoaded", () => {
             const hasAccepted = localStorage.getItem("velocity_privacy");
@@ -552,24 +521,17 @@
             }
         });
 
-        function smartBackNavigation() {
-            const referrer = document.referrer;
-            const currentDomain = window.location.hostname;
-
-            if (referrer && referrer.includes(currentDomain)) {
-                window.location.href = 'projects.html'; 
-            } else {
-                window.history.back();
-            }
-        }
-
         function acceptPrivacy() {
             localStorage.setItem("velocity_privacy", "true");
             document.getElementById("privacy-banner").style.display = "none";
         }
 
         function declinePrivacy() {
-            smartBackNavigation();
+            if (document.referrer) {
+                window.history.back(); 
+            } else {
+                window.location.href = "../index.html"; 
+            }
         }
         
         function showPrivacyBanner() {
@@ -577,13 +539,11 @@
         }
 
         function toggleTheme() {
-            const html = document.documentElement;
-            if (html.hasAttribute("data-theme")) {
-                html.removeAttribute("data-theme");
-                localStorage.setItem("theme", "dark");
+            const currentTheme = document.documentElement.getAttribute("data-theme");
+            if (currentTheme === "light") {
+                document.documentElement.removeAttribute("data-theme");
             } else {
-                html.setAttribute("data-theme", "light");
-                localStorage.setItem("theme", "light");
+                document.documentElement.setAttribute("data-theme", "light");
             }
         }
 
@@ -619,17 +579,21 @@
 
             let caps = [];
 
+            // Condition 1: Gaming
             if (p < 40 && u > 5) { caps.push(`${iconYes} Competitive Online Gaming`); }
             else if (p < 90) { caps.push(`${iconYes} Casual Multiplayer Gaming`); }
             else caps.push(`${iconNo} High Latency (Poor for Gaming)`);
 
+            // Condition 2: Streaming
             if (d >= 25) { caps.push(`${iconYes} Multiple 4K UHD Streams`); }
             else if (d >= 10) { caps.push(`${iconYes} 1080p HD Streaming`); }
             else caps.push(`${iconNo} Standard SD Streaming Only`);
 
+            // Condition 3: Video Calls
             if (d >= 10 && u >= 5 && p < 100) { caps.push(`${iconYes} HD Video Calls (Zoom, Teams)`); }
             else caps.push(`${iconNo} Unstable Video Conferencing`);
             
+            // Condition 4: File Downloads
             if (d >= 100) { caps.push(`${iconYes} Ultra-fast Large File Downloads`); }
             else caps.push(`${iconNo} Slow File Downloads`); 
 
@@ -640,6 +604,7 @@
                 list.appendChild(div);
             });
 
+            // Trigger the "good for nothing" blur ONLY if download speed is roughly 2.5 Mbps or lower
             if (d <= 2.5) {
                 list.classList.add('blurred');
                 overlayMsg.classList.add('active');
@@ -652,12 +617,16 @@
             document.getElementById('modal-ul').innerHTML = `${ul}<span>Mbps</span>`;
             
             generateCapabilities(ping, dl, ul);
+
             document.getElementById('result-modal').classList.add('active');
         }
 
         function closeModal() {
+            // Hide modal
             document.getElementById('result-modal').classList.remove('active');
             document.getElementById('start-btn').innerText = 'Begin Test';
+            
+            // Reset main UI back to zero/default state behind the scenes
             updateSpeedometer(0);
             document.getElementById('dl-speed').innerText = '--';
             document.getElementById('ul-speed').innerText = '--';
@@ -665,6 +634,7 @@
             document.getElementById('jitter').innerText = '--';
             document.getElementById('data-size').innerText = '--';
             document.getElementById('stability-val').innerText = '--';
+            
             document.getElementById('isp-name').innerText = 'Awaiting Test...';
             document.getElementById('network-badge').classList.remove('active');
             document.getElementById('status').innerText = 'Ready';
@@ -692,12 +662,14 @@
                 const rtt = performance.now() - start;
                 if (i > 0) latencies.push(rtt);
             }
+            
             const minPing = Math.min(...latencies);
             let jitterSum = 0;
             for (let i = 1; i < latencies.length; i++) {
                 jitterSum += Math.abs(latencies[i] - latencies[i-1]);
             }
             const jitter = jitterSum / (latencies.length - 1);
+
             document.getElementById('latency').innerText = minPing.toFixed(1);
             document.getElementById('jitter').innerText = jitter.toFixed(1);
             return { ping: minPing.toFixed(1), jitter: jitter.toFixed(1) };
@@ -741,6 +713,7 @@
                     const elapsed = (performance.now() - startTime) / 1000;
                     const totalActive = activeDownloads.reduce((a, b) => a + b, 0);
                     const totalBytes = totalDownloadedPrevious + totalActive;
+                    
                     if (elapsed > 0.1) {
                         currentSpeed = (totalBytes * 8) / (elapsed * 1000000);
                         updateSpeedometer(currentSpeed);
@@ -765,6 +738,7 @@
                 const blobParts = [];
                 for(let i = 0; i < 50; i++) blobParts.push(chunk); 
                 const blob = new Blob(blobParts, { type: 'application/octet-stream' });
+
                 let totalUploadedPrevious = 0; 
                 let activeUploads = new Array(CONCURRENT_STREAMS).fill(0); 
                 let currentSpeed = 0;
@@ -797,10 +771,12 @@
                     const elapsed = (performance.now() - startTime) / 1000;
                     const totalActive = activeUploads.reduce((a, b) => a + b, 0);
                     const totalBytes = totalUploadedPrevious + totalActive;
+                    
                     if (elapsed > 0.1) {
                         currentSpeed = (totalBytes * 8) / (elapsed * 1000000);
                         updateSpeedometer(currentSpeed);
                         document.getElementById('ul-speed').innerText = currentSpeed.toFixed(1);
+                        
                         const currentMB = (totalBytes / (1024 * 1024)).toFixed(1);
                         document.getElementById('data-size').innerText = currentMB;
                     }
@@ -820,10 +796,13 @@
                 document.getElementById("privacy-banner").style.display = "flex";
                 return;
             }
+
             if (isRunning) return;
             isRunning = true;
+            
             const btn = document.getElementById('start-btn');
             const status = document.getElementById('status');
+
             btn.disabled = true;
             btn.innerText = 'Executing Diagnostics...';
             document.getElementById('dl-speed').innerText = '--';
@@ -832,30 +811,39 @@
             document.getElementById('jitter').innerText = '--';
             document.getElementById('data-size').innerText = '--';
             document.getElementById('stability-val').innerText = '--';
+            
             updateSpeedometer(0);
             fetchNetworkInfo();
 
             try {
                 status.innerText = 'Measuring Ping & Jitter Loop...';
                 const latencyMetrics = await measureLatency();
+                
                 status.innerText = 'Testing Download Slices...';
                 const finalDl = await runDownloadTest();
+                
                 updateSpeedometer(0); 
+                
                 status.innerText = 'Testing Upload Slices...';
                 const finalUl = await runUploadTest();
+                
                 status.innerText = 'Diagnostics Completed';
+                
                 let stability = (100 - (latencyMetrics.jitter * 0.5));
                 if(stability < 0) stability = 0;
                 document.getElementById('stability-val').innerText = stability.toFixed(0);
+                
                 showModal(latencyMetrics.ping, finalDl, finalUl, latencyMetrics.jitter);
+
             } catch (error) {
                 console.error(error);
-                status.innerText = 'Network Protocol Interrupted';
+                status.innerText = 'NetworkProtocol Interrupted';
             } finally {
                 btn.disabled = false;
                 isRunning = false;
             }
         }
     </script>
-</body>
+</body
 </html>
+                        
